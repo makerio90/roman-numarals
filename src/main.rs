@@ -5,13 +5,10 @@ fn main() {
 
     let filename = &args[1];
 
-    println!("{:?}", args);
-    println!("In file {}", filename);
-
     let contents = fs::read_to_string(filename)
         .expect("Something went wrong reading the file");
 
-    ronum_decode(contents);
+        println!("{}", ronum_decode(contents));
 }
 fn ronum_decode(num: String) -> u32{
     let num = num.to_lowercase();
@@ -42,6 +39,5 @@ fn ronum_decode(num: String) -> u32{
         i += 1;
     }
     let result: u32 = result.iter().sum();
-    println!("{}", result);
     result
 }
