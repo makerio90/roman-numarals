@@ -1,19 +1,16 @@
 use std::{env};
-
 fn main() {
     let args: Vec<String> = env::args().collect();
     if args.len() < 3{
         eprintln!("not enough arguments");
+    } else if args[1] == "decode"{
+        let input = &args[2];
+        println!("{}", ronum_decode(input.to_string()));
+    } else if args[1] == "encode"{
+        let input: u32 = args[2].trim().parse().expect("not a number");
+        println!("{}", ronum_encode(input))
     } else {
-        if args[1] == "decode"{
-            let input = &args[2];
-            println!("{}", ronum_decode(input.to_string()));
-        } else if args[1] == "encode"{
-            let input: u32 = args[2].trim().parse().expect("not a number");
-            println!("{}", ronum_encode(input))
-        } else {
-            eprintln!("plese select eiether encode or decode");
-        }
+        eprintln!("plese select eiether encode or decode");
     }
 }
 fn ronum_encode(mut num: u32) -> String{
@@ -28,7 +25,8 @@ fn ronum_encode(mut num: u32) -> String{
             i -= 1;
         }
     }
-    let roman: String = simplify(roman).to_string();
+    
+    let roman = simplify(roman);
     "test".to_string()
 }
 //fixme
